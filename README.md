@@ -43,7 +43,8 @@ This project is licensed under the terms of the included LICENSE file.
 ### Requirements
 
 - [Databricks CLI](https://docs.databricks.com/dev-tools/cli/install.html) version 0.205.0 or later
-- A configured Databricks profile with workspace access (for example, set via `databricks configure --profile <profile>`)
+- A Databricks workspace personal access token (PAT) with the permissions required to deploy jobs and workspace files
+- A configured Databricks profile that points to the target workspace. Run `databricks configure --profile <profile>` and supply the workspace host (for example, `https://<region>.azuredatabricks.net`) together with the PAT when prompted.
 
 ### Deploy the bundle
 
@@ -54,6 +55,8 @@ databricks bundle deploy --profile <profile> --target dev
 ```
 
 Replace `<profile>` with the Databricks CLI profile you configured. The default `dev` target deploys the notebooks and job definitions to `/Shared/volcano`.
+
+> **Tip:** If the CLI returns `HTTP Status: 403 Forbidden` with `Invalid access token`, the PAT stored in the profile has expired or was revoked. Generate a new PAT in the Databricks workspace UI and re-run `databricks configure --profile <profile>` to update the saved credentials before deploying again.
 
 ### Trigger the nightly validation job
 

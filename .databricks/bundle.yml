@@ -4,14 +4,11 @@ bundle:
 workspace:
   root_path: /Shared/${bundle.name}
   file_path: /Shared/${bundle.name}/source
-
-include:
-  - resources/*.yml
-  - workspace/*.yml
+targets:
+  dev: {}
 
 variables:
   notebooks:
-    run_tests:
-      type: string
-      description: Fully qualified workspace path to the Volcano validation notebook.
-      default: /Repos/${workspace.current_user.userName}/volcano/notebooks/run_volcano_tests
+    description: Workspace notebook locations for the Volcano project.
+    default:
+      run_tests: /Repos/${workspace.current_user.userName}/volcano/notebooks/run_volcano_tests
