@@ -1,0 +1,7 @@
+workspace:
+  files:
+    - source: notebooks
+      path: /Shared/${bundle.name}/notebooks
+      pattern: "**/*.py"
+      properties:
+        run_as_owner: true
