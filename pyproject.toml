@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "volcano"
+version = "0.1.0"
+description = "Starter template for the Volcano Python package inspired by yggdrasil."
+readme = "README.md"
+authors = [{ name = "PyDBX Maintainers" }]
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7",
+    "pytest-cov>=4",
+    "ruff>=0.1",
+]
+
+[project.scripts]
+volcano = "volcano.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+
