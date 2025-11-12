@@ -1,0 +1,4 @@
+include:
+  - .databricks/bundle.yml
+  - .databricks/resources/*.yml
+  - .databricks/workspace/*.yml
