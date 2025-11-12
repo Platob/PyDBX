@@ -1,0 +1,25 @@
+resources:
+  jobs:
+    nightly_validation:
+      name: Volcano - Nightly Validation
+      description: Executes the regression notebook for the Volcano Python package.
+      tags:
+        project: volcano
+        owner: ${workspace.current_user.userName}
+      schedule:
+        quartz_cron_expression: 0 0 6 * * ?
+        timezone_id: UTC
+        pause_status: UNPAUSED
+      email_notifications:
+        no_alert_for_skipped_runs: true
+      tasks:
+        - task_key: run_regression_suite
+          description: Run the Volcano regression notebook on a shared job cluster.
+          notebook_task:
+            notebook_path: ${var.notebooks.run_tests}
+            base_parameters:
+              env: ${bundle.target}
+          job_cluster_key: volcano_job_cluster
+      job_clusters:
+        - job_cluster_key: volcano_job_cluster
+          new_cluster: ${resources.clusters.shared_job_cluster}
